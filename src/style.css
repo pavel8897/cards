@@ -1,0 +1,9 @@
+@import '~normalize.css';
+
+body {
+	background: red;
+}
+
+p {
+	color: aqua;
+}
