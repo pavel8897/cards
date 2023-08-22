@@ -1,12 +1,23 @@
 import path from 'path';
 import {CleanWebpackPlugin} from 'clean-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
-let test = path.resolve('src');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+let test = path.resolve('src');
 
 export default {
     mode: 'development',
     entry: './src/index.js',
+	output: {
+		filename: '[name].[contenthash].js',
+        path: path.resolve('dist')
+	},
+	plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'build.[contenthash].css'
+        }),
+        new CleanWebpackPlugin(),
+		new HtmlWebpackPlugin()
+    ],
     module: {
 		rules: [
 			{
@@ -14,26 +25,7 @@ export default {
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 		],
-	},
-    plugins: [
-        new CopyPlugin({
-			patterns: [
-				{
-					from: path.resolve('src/index.html'),
-					to: path.resolve('dist')
-				},
-				
-			],
-		}),
-        new MiniCssExtractPlugin({
-            filename: 'build.css'
-        }),
-        new CleanWebpackPlugin()
-    ],
-    output: {
-		filename: 'build.js',
-        path: path.resolve('dist')
-	}
+	}    
 };
 
 
