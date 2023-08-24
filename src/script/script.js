@@ -1,4 +1,4 @@
-let translations = [
+let eng = [
     {word: "apple", translation: "яблоко"},
     {word: "banana", translation: "банан"},
     {word: "cat", translation: "кот"},
@@ -91,6 +91,39 @@ let translations = [
     {word: "hedgehog", translation: "еж"},
     {word: "ibex", translation: "каменный козёл"},
     {word: "koala", translation: "коала"}
-  ]
-  
-  
+];
+
+let arrRepeat = [];
+
+function setItem () {
+    if(localStorage.getItem('repeat') !== null) {
+        arrRepeat = JSON.parse(localStorage.getItem('repeat'));
+    }
+    return arrRepeat;
+}
+
+function getItem() {
+    localStorage.setItem('repeat', JSON.stringify(arrRepeat));
+}
+
+setItem()
+
+
+let length = eng.length;
+let word = document.querySelector('.word');
+let yes = document.querySelector('.yes');
+let no = document.querySelector('.no');
+
+const randomInt = Math.floor(Math.random() * length) + 1;
+arrRepeat.push(randomInt);
+getItem();
+console.log(arrRepeat);
+word.innerHTML = eng[randomInt].word;
+
+yes.onclick = () => {
+    
+}
+
+no.onclick = () => {
+    console.log('no');
+}

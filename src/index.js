@@ -1,4 +1,4 @@
-import './style.css';
-import './data.js';
-import './script.js';
+import './style/style.css';
+import './script/data.js';
+import './script/script.js';
 

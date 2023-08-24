@@ -6,10 +6,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export default {
     mode: 'development',
-    entry: './src/index.js',
-	output: {
-		filename: '[name].[contenthash].js',
-        path: path.resolve('dist')
+    entry: {
+		data: './src/script/data.js',
+		main: './src/index.js'	
+	},
+	output: {		
+        path: path.resolve('dist'),
+		filename: '[name].[contenthash].js'
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -28,7 +31,7 @@ export default {
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 		],
-	}    
+	}
 };
 
 
