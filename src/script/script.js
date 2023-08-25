@@ -95,30 +95,40 @@ let eng = [
 
 let arrRepeat = [];
 
-function setItem () {
+function getItem () {
     if(localStorage.getItem('repeat') !== null) {
         arrRepeat = JSON.parse(localStorage.getItem('repeat'));
     }
-    return arrRepeat;
+
+    if(localStorage.getItem('eng') !== null) {
+        eng = JSON.parse(localStorage.getItem('eng'));
+    }
+    //return arrRepeat;
 }
 
-function getItem() {
+function setItem() {
     localStorage.setItem('repeat', JSON.stringify(arrRepeat));
+    localStorage.setItem('eng', JSON.stringify(eng));
 }
 
-setItem()
-
+getItem();
 
 let length = eng.length;
+console.log(length);
 let word = document.querySelector('.word');
 let yes = document.querySelector('.yes');
 let no = document.querySelector('.no');
 
-const randomInt = Math.floor(Math.random() * length) + 1;
-arrRepeat.push(randomInt);
-getItem();
-console.log(arrRepeat);
+const randomInt = Math.floor(Math.random() * length);
+arrRepeat.push(eng[randomInt].word);
+
 word.innerHTML = eng[randomInt].word;
+eng.forEach((item, i) => {
+    if(arrRepeat.includes(item.word)) {
+        eng.splice(i, 1);
+    }
+});
+setItem();
 
 yes.onclick = () => {
     
