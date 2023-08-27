@@ -375,6 +375,7 @@ template {
 	font-size: 60px;
 	color: green;
 	margin-bottom: 30px;
+	white-space: nowrap;
 }
 
 .wrapper {
