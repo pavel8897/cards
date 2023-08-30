@@ -111,6 +111,12 @@ function setItem() {
     localStorage.setItem('eng', JSON.stringify(eng));
 }
 
+function removeItem() {
+    localStorage.removeItem('repeat');
+    localStorage.removeItem('eng');
+    console.log(eng);
+}
+
 getItem();
 
 let length = eng.length;
@@ -118,14 +124,17 @@ console.log(length);
 let word = document.querySelector('.word');
 let yes = document.querySelector('.yes');
 let no = document.querySelector('.no');
+let reset = document.querySelector('.reset');
+let i = 0;
 
 const randomInt = Math.floor(Math.random() * length);
 word.innerHTML = eng[randomInt].word;
 
 function removeWords() {
-    arrRepeat.push(eng[randomInt].word);
+    arrRepeat.push(eng[randomInt]);
+    let arrWord = arrRepeat.map(item => item.word);
     eng.forEach((item, i) => {
-        if (arrRepeat.includes(item.word)) {
+        if (arrWord.includes(item.word)) {
             eng.splice(i, 1);
         }
     });
@@ -133,10 +142,21 @@ function removeWords() {
     word.innerHTML = eng[randomInt].word;
 }
 
-yes.onclick = () => {
+yes.onclick = () => {    
     removeWords();
+    i++;
+    if(i >= 5) {
+        i = 0;
+        let firstElem = arrRepeat.shift();
+        eng.push(firstElem);
+        setItem();
+    }
 };
 
 no.onclick = () => {
     word.innerHTML = eng[randomInt].word + ' - ' + eng[randomInt].translation;
+};
+
+reset.onclick = () => {
+    removeItem();
 };

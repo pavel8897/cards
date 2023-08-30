@@ -35,9 +35,10 @@
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
+	margin-bottom: 30px;
 }
 
-.btns input[type="submit"] {
+.btns input[type="submit"], .reset {
 	background-color: #3498db;
 	padding: 10px 20px;
 	color: white;
@@ -51,4 +52,12 @@
 
 .btns input[type="submit"]:hover {
 	background-color: #2980b9;
+}
+
+.reset {
+	background-color: red;
+}
+
+.reset:hover {
+	background-color: rgb(104, 3, 3);
 }
