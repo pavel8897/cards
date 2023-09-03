@@ -93,6 +93,25 @@ let eng = [
     { word: 'koala', translation: 'коала' },
 ];
 
+let cloneEng = [...eng];
+let outWords = document.querySelector('.words .out');
+let allWords = document.querySelector('.all_words');
+let allInput = document.querySelectorAll('.words input');
+let outLearnWords = '';
+
+function showAllWords() {
+    let outAllWords = '';
+    eng.forEach((item, i) => {
+        outAllWords += item.word + ' - ' + item.translation + '<br>';
+    });
+    allInput.forEach((item) => item.classList.remove('active'));
+    allWords.classList.add('active');
+
+    outWords.innerHTML = outAllWords;
+}
+
+showAllWords();
+
 let arrRepeat = [];
 
 function getItem() {
@@ -101,62 +120,98 @@ function getItem() {
     }
 
     if (localStorage.getItem('eng') !== null) {
-        eng = JSON.parse(localStorage.getItem('eng'));
+        cloneEng = JSON.parse(localStorage.getItem('eng'));
     }
-    //return arrRepeat;
 }
 
 function setItem() {
     localStorage.setItem('repeat', JSON.stringify(arrRepeat));
-    localStorage.setItem('eng', JSON.stringify(eng));
+    localStorage.setItem('eng', JSON.stringify(cloneEng));
 }
 
 function removeItem() {
     localStorage.removeItem('repeat');
     localStorage.removeItem('eng');
-    console.log(eng);
+    console.log(cloneEng);
 }
 
 getItem();
 
-let length = eng.length;
+let length = cloneEng.length;
 console.log(length);
 let word = document.querySelector('.word');
 let yes = document.querySelector('.yes');
 let no = document.querySelector('.no');
 let reset = document.querySelector('.reset');
+let learnWords = document.querySelector('.learn_words');
+let newWords = document.querySelector('.new_words');
+
 let i = 0;
 
 const randomInt = Math.floor(Math.random() * length);
-word.innerHTML = eng[randomInt].word;
+word.innerHTML = cloneEng[randomInt].word;
 
 function removeWords() {
-    arrRepeat.push(eng[randomInt]);
-    let arrWord = arrRepeat.map(item => item.word);
-    eng.forEach((item, i) => {
+    arrRepeat.push(cloneEng[randomInt]);
+    let arrWord = arrRepeat.map((item) => item.word);
+    cloneEng.forEach((item, i) => {
         if (arrWord.includes(item.word)) {
-            eng.splice(i, 1);
+            cloneEng.splice(i, 1);
         }
     });
     setItem();
-    word.innerHTML = eng[randomInt].word;
+    word.innerHTML = cloneEng[randomInt].word;
 }
 
-yes.onclick = () => {    
+function showLearnWords() {
+    arrRepeat.forEach((item, i) => {
+        outLearnWords += item.word + ' ' + item.translation + '<br>';
+    });
+    allInput.forEach((item) => item.classList.remove('active'));
+    learnWords.classList.add('active');
+
+    outWords.innerHTML = outLearnWords;
+}
+
+function showNewWords() {
+    let outNewWords = '';
+    cloneEng.forEach((item, i) => {
+        outNewWords += item.word + ' ' + item.translation + '<br>';
+    });
+    allInput.forEach((item) => item.classList.remove('active'));
+    newWords.classList.add('active');
+
+    outWords.innerHTML = outNewWords;
+}
+
+yes.onclick = () => {
     removeWords();
     i++;
-    if(i >= 5) {
+    if (i >= 5) {
         i = 0;
         let firstElem = arrRepeat.shift();
-        eng.push(firstElem);
+        cloneEng.push(firstElem);
         setItem();
     }
 };
 
 no.onclick = () => {
-    word.innerHTML = eng[randomInt].word + ' - ' + eng[randomInt].translation;
+    word.innerHTML =
+        cloneEng[randomInt].word + ' - ' + cloneEng[randomInt].translation;
 };
 
 reset.onclick = () => {
     removeItem();
+};
+
+allWords.onclick = () => {
+    showAllWords();
+};
+
+learnWords.onclick = () => {
+    showLearnWords();
+};
+
+newWords.onclick = () => {
+    showNewWords();
 };

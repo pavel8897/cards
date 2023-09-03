@@ -7,15 +7,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <div class="wrapper">
-                <div class="word"></div>
+        <div class="blocks">
+            <div class="card">
+                <div class="wrapper">
+                    <div class="word"></div>
                     <div class="btns">
                         <input type="submit" class="yes" value="Знаю">
                         <input type="submit" class="no" value="Не знаю">
                     </div>
                     <input type="submit" class="reset" value="Сброс">
                 </div>
+            </div>
+
+            <div class="words">
+                <div class="switch">
+                    <input class="all_words active" type="submit" value="Все слова">
+                    <input class="learn_words" type="submit" value="Выученный слова">
+                    <input class="new_words" type="submit" value="Слова для заучивания">
+                </div>
+                <div class="out"></div>
             </div>
         </div>
     </div>
