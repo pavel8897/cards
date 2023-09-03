@@ -164,8 +164,9 @@ function removeWords() {
 }
 
 function showLearnWords() {
+    let outLearnWords = '';
     arrRepeat.forEach((item, i) => {
-        outLearnWords += item.word + ' ' + item.translation + '<br>';
+        outLearnWords += item.word + ' - ' + item.translation + '<br>';
     });
     allInput.forEach((item) => item.classList.remove('active'));
     learnWords.classList.add('active');
@@ -176,7 +177,7 @@ function showLearnWords() {
 function showNewWords() {
     let outNewWords = '';
     cloneEng.forEach((item, i) => {
-        outNewWords += item.word + ' ' + item.translation + '<br>';
+        outNewWords += item.word + ' -  ' + item.translation + '<br>';
     });
     allInput.forEach((item) => item.classList.remove('active'));
     newWords.classList.add('active');

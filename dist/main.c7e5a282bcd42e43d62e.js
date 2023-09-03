@@ -48,7 +48,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n\n\n//# sourceURL=webpack:///
   \******************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module parse failed: Identifier 'showAllWords' has already been declared (162:9)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| }\\n| \\n> function showAllWords() {\\n|     arrRepeat.forEach((item) => {\\n|         outLearnWords += item.words + ' ' + item.translation + '<br>';\");\n\n//# sourceURL=webpack:///./src/script/script.js?");
+eval("throw new Error(\"Module parse failed: Identifier 'out' has already been declared (104:12)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| class Show {\\n|     show(out, arr) {\\n>         let out = '';\\n|         eng.forEach((item, i) => {\\n|             out += item.word + ' - ' + item.translation + '<br>';\");\n\n//# sourceURL=webpack:///./src/script/script.js?");
 
 /***/ })
 
